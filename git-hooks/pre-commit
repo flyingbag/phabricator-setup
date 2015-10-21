@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# A pre-commit hook that makes it illegal to commit to master
+# A pre-commit hook that makes it illegal to commit to develop
 # on the repo.  An exception is made for 'arc', which is the preffered
 # workflow.
 #
@@ -11,10 +11,9 @@ if [ -n "$ARCANIST" ]; then
     exit 0
 fi
 
-if [ "$(git rev-parse --abbrev-ref HEAD)" = "master" ]; then
-    echo "FATAL ERROR: You cannot commit directly to the master branch."
+if [ "$(git rev-parse --abbrev-ref HEAD)" = "develop" ]; then
+    echo "FATAL ERROR: You cannot commit directly to the develop branch."
     echo
-    echo "Commit to a feature branch instead:"
-    echo "    http://docs.calblueprint.org/dev/git-at-bp"
+    echo "Commit to a feature branch instead."
     exit 1
 fi
