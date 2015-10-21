@@ -7,7 +7,7 @@ import sys
 import urllib
 import subprocess
 
-GITHUB_RAW_URL = 'https://raw.githubusercontent.com/calblueprint/phabricator-setup/master'
+GITHUB_RAW_URL = 'https://github.com/flyingbag/phabricator-setup/master'
 
 GITHOOKS = {
     'pre-commit':         '%s/git-hooks/pre-commit',
@@ -89,11 +89,9 @@ def set_commit_template():
     format_args = {
         'project': raw_input((
             "\nType the name of your project as it appears on Phabricator.\n"
-            "(Visit http://phab.calblueprint.org/project/query/active/ for reference.)\n"
             "> ")),
         'project_lead': raw_input((
             "\nType the name of your project leader as it appears on Phabricator.\n"
-            "(Visit http://phab.calblueprint.org/people/ for reference.)\n"
             "> ")),
         'teammates': raw_input((
             "\nType the names of your teammates as they appear on Phabricator, comma delimited.\n"
@@ -139,7 +137,7 @@ if __name__ == '__main__':
     logging.basicConfig(format='%(message)s')
     logging.getLogger().setLevel(logging.INFO)
 
-    logging.info('Setting up repo for Blueprint Phabricator workflow...')
+    logging.info('Setting up repo for Phabricator workflow...')
 
     _setup_repo(args)
     logging.info('All done!')
