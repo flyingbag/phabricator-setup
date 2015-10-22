@@ -23,7 +23,7 @@ This script does the following automagically:
 - Sets up a custom commit message template which defaults to adding your PL and teammates as Reviewer and CCs, respectively.
 - Configures a git hook on `prepare-commit-msg` to disable committing with `-m`, in order for git to pick up the aforementioned commit template.
 - Sets up your repo to automatically `rebase` on `git pull`.
-- Configures `arc vdiff`, an alias for `arc diff --verbatim`.
+- Configures `arc diff --verbatim`.
 
 ### Voila!
 You should be configured to push diffs for code review onto Phabricator, yay! Read the next section to get a feel for the Phabricator workflow.
