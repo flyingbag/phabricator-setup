@@ -4,12 +4,24 @@ Phabricator is a platform for code review, much like GitHub Pull Requests. Phabr
 
 Developer Setup
 ----
+### Add arcanist/bin to $PATH
+In your home directory, find ~/.bashrc, open it and append the following path to PATH:
+
+	/mnt/distribute_env/phacility/arcanist/bin
+
 ### Install Phabricator certificate
 In your project directory (which your PL should have already configured to work with Phabricator properly), run the following:
 
-	/mnt/distribute_env/phacility/arcanist/bin/arc install-certificate
+	arc install-certificate
 
 This should print a URL to your terminal. Follow the link, copy the code given, and paste it back in your terminal.
+
+### Configure default Phabricator URI
+Run the following to set a default Phabricator URI:
+
+	arc set-config default http://phabricator.visenze.com
+
+This should enable you to run arc without an .arcconfig for your project.
 
 ### Configure local repo git conventions
 Navigate to the root of your repo and copy/paste the following into your terminal to curl and run an automated script that will set up your repo with some goodies that should streamline your workflow:
@@ -52,12 +64,7 @@ Some of these rules are stricly enforced by the above configuration you did on y
 	- If you need to force `arc` to assign the new commits to the correct Phab revision ID, use `arc diff --update <revision id>`
 	- If you don't need to change your commit message on amend, you can use the `--no-edit` flag to skip editing it.
 
-5. When you are ready to push, you'll want to rebase your changes into the branch and do a git push from local up to GitHub. (See the note below on rebasing.) You can do this in one step, which will also update your commit message with Phabricator metadata: `arc land`
-	- If you want to be explicit, you can run `arc land <to-branch>`
-
-	> **Rebasing:** Phabricator projects should be set up to `rebase` instead of `merge` by default; this should have been set up by the aforemention automated script. Rebasing gives the illusion of a much cleaner commit history. Ask your PL to clarify the difference between `merge` and `rebase`, you should become somewhat familiar with the two.
-
-If other people have committed changes that you want to incorporate into your branch (perhaps a bugfix that you need), you can just do `git pull --rebase` in your feature branch (or simply `git pull` if your repo has set up rebase by default).  Phabricator will do the right thing in ignoring these not-your changes.
+5. When you are ready to push, run `git push`.
 
 See the Phabricator authors' workflow for more in-depth, detailed info [here](https://secure.phabricator.com/w/guides/arcanist_workflows/).
 
@@ -75,4 +82,4 @@ See the Phabricator authors' workflow for more in-depth, detailed info [here](ht
 	<maybe run git pull if you want some updates>
 	<edit + commit + arc diff some more>
 
-	arc land
+	git push
